@@ -31,9 +31,9 @@ namespace MIPOC
         {
             this.btnGetToken = new System.Windows.Forms.Button();
             this.txtToken = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAPIResult = new System.Windows.Forms.TextBox();
             this.btnCallApi = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtAPIError = new System.Windows.Forms.TextBox();
             this.btnCallApiWithoutToken = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -49,19 +49,25 @@ namespace MIPOC
             // 
             // txtToken
             // 
+            this.txtToken.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtToken.Location = new System.Drawing.Point(243, 27);
             this.txtToken.Multiline = true;
             this.txtToken.Name = "txtToken";
             this.txtToken.Size = new System.Drawing.Size(529, 175);
             this.txtToken.TabIndex = 1;
             // 
-            // textBox1
+            // txtAPIResult
             // 
-            this.textBox1.Location = new System.Drawing.Point(243, 217);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(529, 175);
-            this.textBox1.TabIndex = 3;
+            this.txtAPIResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAPIResult.Location = new System.Drawing.Point(243, 217);
+            this.txtAPIResult.Multiline = true;
+            this.txtAPIResult.Name = "txtAPIResult";
+            this.txtAPIResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtAPIResult.Size = new System.Drawing.Size(529, 175);
+            this.txtAPIResult.TabIndex = 3;
             // 
             // btnCallApi
             // 
@@ -71,32 +77,37 @@ namespace MIPOC
             this.btnCallApi.TabIndex = 2;
             this.btnCallApi.Text = "2. Call app service with Token";
             this.btnCallApi.UseVisualStyleBackColor = true;
+            this.btnCallApi.Click += new System.EventHandler(this.btnCallApi_Click);
             // 
-            // textBox2
+            // txtAPIError
             // 
-            this.textBox2.Location = new System.Drawing.Point(243, 398);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(529, 175);
-            this.textBox2.TabIndex = 5;
+            this.txtAPIError.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAPIError.Location = new System.Drawing.Point(243, 398);
+            this.txtAPIError.Multiline = true;
+            this.txtAPIError.Name = "txtAPIError";
+            this.txtAPIError.Size = new System.Drawing.Size(529, 175);
+            this.txtAPIError.TabIndex = 5;
             // 
             // btnCallApiWithoutToken
             // 
+            this.btnCallApiWithoutToken.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCallApiWithoutToken.Location = new System.Drawing.Point(12, 398);
             this.btnCallApiWithoutToken.Name = "btnCallApiWithoutToken";
             this.btnCallApiWithoutToken.Size = new System.Drawing.Size(216, 63);
             this.btnCallApiWithoutToken.TabIndex = 4;
             this.btnCallApiWithoutToken.Text = "3. Call app service without token";
             this.btnCallApiWithoutToken.UseVisualStyleBackColor = true;
+            this.btnCallApiWithoutToken.Click += new System.EventHandler(this.btnCallApiWithoutToken_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 577);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtAPIError);
             this.Controls.Add(this.btnCallApiWithoutToken);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtAPIResult);
             this.Controls.Add(this.btnCallApi);
             this.Controls.Add(this.txtToken);
             this.Controls.Add(this.btnGetToken);
@@ -111,9 +122,9 @@ namespace MIPOC
 
         private System.Windows.Forms.Button btnGetToken;
         private System.Windows.Forms.TextBox txtToken;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAPIResult;
         private System.Windows.Forms.Button btnCallApi;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtAPIError;
         private System.Windows.Forms.Button btnCallApiWithoutToken;
     }
 }

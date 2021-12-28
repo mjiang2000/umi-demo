@@ -11,11 +11,15 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using Microsoft.Azure.Services.AppAuthentication;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace MIPOC
 {
     public partial class Form1 : Form
     {
+
+
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +31,8 @@ namespace MIPOC
          
             try
             {
-                var azureServiceTokenProvider = new AzureServiceTokenProvider();
+                var umiClientId = "bcee34af-98ac-4199-90e7-27fe9ff2579e";
+                var azureServiceTokenProvider = new AzureServiceTokenProvider($"RunAs=App;AppId={umiClientId}");
                 string accessToken = azureServiceTokenProvider.GetAccessTokenAsync("api://47bc37bb-860b-4133-9e76-77e76dee9d5d").GetAwaiter().GetResult();
                 this.txtToken.Text = accessToken;
             }
@@ -37,6 +42,38 @@ namespace MIPOC
                 MessageBox.Show(errorText);
             }
 
+        }
+
+        private async void btnCallApi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(this.txtToken.Text))
+                {
+                    var httpClient = new HttpClient();
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.txtToken.Text);
+                    var response = await httpClient.GetAsync("https://vj-webapp-01.azurewebsites.net/api/TestApi");
+                    this.txtAPIResult.Text = await response.Content.ReadAsStringAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                this.txtAPIResult.Text = ex.Message;
+            }
+        }
+
+        private async void btnCallApiWithoutToken_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync("https://vj-webapp-01.azurewebsites.net/api/TestApi");
+                this.txtAPIError.Text = response.StatusCode.ToString();
+            }
+            catch (Exception ex)
+            {
+                this.txtAPIError.Text = ex.Message;
+            }
         }
     }
 }

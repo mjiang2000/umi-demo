@@ -4,3 +4,4 @@
 **/.vs
 **/PublishProfiles
 API/DemoAPI/Properties/ServiceDependencies/vj-webapp-01 - Web Deploy/profile.arm.json
+API/DemoAPI/.config/dotnet-tools.json
